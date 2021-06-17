@@ -1,0 +1,16 @@
+D:\OneDrive\Projects\CSharp\Final\TranQuangDangWebsiteBanHang\ModelEF\bin\Debug\ModelEF.dll.config
+D:\OneDrive\Projects\CSharp\Final\TranQuangDangWebsiteBanHang\ModelEF\bin\Debug\ModelEF.dll
+D:\OneDrive\Projects\CSharp\Final\TranQuangDangWebsiteBanHang\ModelEF\bin\Debug\ModelEF.pdb
+D:\OneDrive\Projects\CSharp\Final\TranQuangDangWebsiteBanHang\ModelEF\bin\Debug\EntityFramework.dll
+D:\OneDrive\Projects\CSharp\Final\TranQuangDangWebsiteBanHang\ModelEF\bin\Debug\EntityFramework.SqlServer.dll
+D:\OneDrive\Projects\CSharp\Final\TranQuangDangWebsiteBanHang\ModelEF\bin\Debug\EntityFramework.xml
+D:\OneDrive\Projects\CSharp\Final\TranQuangDangWebsiteBanHang\ModelEF\bin\Debug\EntityFramework.SqlServer.xml
+D:\OneDrive\Projects\CSharp\Final\TranQuangDangWebsiteBanHang\ModelEF\obj\Debug\ModelEF.csproj.CoreCompileInputs.cache
+D:\OneDrive\Projects\CSharp\Final\TranQuangDangWebsiteBanHang\ModelEF\obj\Debug\ModelEF.csproj.CopyComplete
+D:\OneDrive\Projects\CSharp\Final\TranQuangDangWebsiteBanHang\ModelEF\obj\Debug\ModelEF.dll
+D:\OneDrive\Projects\CSharp\Final\TranQuangDangWebsiteBanHang\ModelEF\obj\Debug\ModelEF.pdb
+D:\OneDrive\Projects\CSharp\Final\TranQuangDangWebsiteBanHang\ModelEF\bin\Debug\PagedList.dll
+D:\OneDrive\Projects\CSharp\Final\TranQuangDangWebsiteBanHang\ModelEF\bin\Debug\PagedList.Mvc.dll
+D:\OneDrive\Projects\CSharp\Final\TranQuangDangWebsiteBanHang\ModelEF\bin\Debug\PagedList.xml
+D:\OneDrive\Projects\CSharp\Final\TranQuangDangWebsiteBanHang\ModelEF\bin\Debug\PagedList.Mvc.xml
+D:\OneDrive\Projects\CSharp\Final\TranQuangDangWebsiteBanHang\ModelEF\obj\Debug\ModelEF.csprojAssemblyReference.cache

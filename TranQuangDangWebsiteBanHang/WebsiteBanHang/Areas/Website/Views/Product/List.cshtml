@@ -1,0 +1,279 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<ModelEF.EF.Product>
+
+@{
+    ViewBag.Title = "Danh sách sản phẩm";
+    Layout = "~/Areas/Website/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Start of Breadcrumbs -->
+<div class="breadcrumb-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12">
+                <nav class="breadcrumb">
+                    <a class="breadcrumb-item" href="@Url.Action("Index", "Home")">Trang chủ</a>
+                    <span class="breadcrumb-item active">Danh sách sản phẩm</span>
+                </nav>
+            </div>
+        </div> <!-- end of row -->
+    </div> <!-- end of container -->
+</div>
+<!-- End of Breadcrumbs -->
+<!-- Start of Main Content Wrapper -->
+<div id="content" class="main-content-wrapper">
+
+    <!-- Start of Shop Products Wrapper -->
+    <div class="shop-products-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-9 order-1 order-md-1 order-lg-2">
+                    <main id="primary" class="site-main">
+                        <div class="shop-wrapper">
+                            <div class="row">
+                                <div class="col-12 col-sm-12 col-md-12">
+                                    <div class="shop-toolbar">
+                                        <div class="toolbar-inner">
+                                            <div class="product-view-mode">
+                                                <ul role="tablist" class="nav shop-item-filter-list">
+                                                    <li role="presentation" class="active"><a href="#grid" aria-controls="grid" role="tab" data-toggle="tab" class="active show" aria-selected="true"><i class="ion-md-grid"></i></a></li>
+                                                    <li role="presentation"><a href="#list" aria-controls="list" role="tab" data-toggle="tab"><i class="ion-md-list"></i></a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="product-select-box">
+                                            <div class="product-sort">
+                                                <p>Sắp xếp:</p>
+                                                <select class="nice-select" name="sortby">
+                                                    <option value="trending">Mặc định</option>
+                                                    <option value="sales">Khuyến mãi</option>
+                                                    <option value="rating">Đánh giá</option>
+                                                    <option value="date">Ngày thêm</option>
+                                                    <option value="price-asc">Giá (Thấp -> Cao)</option>
+                                                    <option value="price-desc">Giá (Cao -> Thấp)</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> <!-- end of row -->
+
+                            <div class="row">
+                                <div class="col-12 col-sm-12 col-md-12">
+                                    <div class="shop-products-wrapper">
+                                        <div class="tab-content">
+                                            <div id="grid" class="tab-pane fade active show" role="tabpanel">
+                                                <div class="row">
+                                                    @foreach (var item in Model)
+                                                    {
+                                                        <div class="product-layout product-grid col-6 col-sm-6 col-md-4 col-lg-4">
+                                                            <div class="product-thumb">
+                                                                <div class="product-inner">
+                                                                    <div class="product-image">
+                                                                        <a href="@Url.Action("Detail", "Product", new { @id = item.ID})">
+                                                                            @if (!string.IsNullOrEmpty(item.Image))
+                                                                            {
+                                                                                <img src="@Url.Content(item.Image)" alt="productImg" />
+                                                                            }
+                                                                        </a>
+                                                                        <div class="action-links">
+                                                                            <a class="action-btn btn-cart" href="#" title="Giỏ hàng"><i class="pe-7s-cart"></i></a>
+                                                                            <a class="action-btn btn-wishlist" href="#" title="Yêu thích"><i class="pe-7s-like"></i></a>
+                                                                            <a class="action-btn btn-compare" href="#" title="So sánh"><i class="pe-7s-refresh-2"></i></a>
+                                                                            <a class="action-btn btn-quickview" data-toggle="modal" data-target="#product_quick_view" href="#" title="Xem nhanh"><i class="pe-7s-search"></i></a>
+                                                                        </div>
+                                                                    </div> <!-- end of product-image -->
+
+                                                                    <div class="product-caption">
+                                                                        <div class="product-ratings">
+                                                                            <div class="rating-box">
+                                                                                <ul class="rating d-flex">
+                                                                                    <li><i class="fa fa-star"></i></li>
+                                                                                    <li><i class="fa fa-star"></i></li>
+                                                                                    <li><i class="fa fa-star"></i></li>
+                                                                                    <li><i class="fa fa-star"></i></li>
+                                                                                    <li><i class="fa fa-star"></i></li>
+                                                                                </ul>
+                                                                            </div>
+                                                                        </div>
+                                                                        <h4 class="product-name"><a href="@Url.Action("Detail", "Product", new { @id = item.ID})">@Html.DisplayFor(modelItem => item.Name)</a></h4>
+                                                                        <p class="product-price">
+                                                                            @{
+                                                                                var UnitCost = String.Format("{0:#,##0₫}", item.UnitCost);
+                                                                            }
+                                                                            <span class="price-old">
+                                                                                @Html.DisplayFor(modelItem => UnitCost)
+                                                                            </span>
+                                                                            <span class="price-new">
+                                                                                @Html.DisplayFor(modelItem => UnitCost)
+                                                                            </span>
+                                                                        </p>
+                                                                    </div><!-- end of product-caption -->
+                                                                </div><!-- end of product-inner -->
+                                                            </div><!-- end of product-thumb -->
+                                                        </div> <!-- end of product-layout -->
+                                                    }
+                                                </div>
+                                            </div>
+                                            <div id="list" class="tab-pane fade" role="tabpanel">
+                                                <div class="row">
+                                                    <div class="col-12 col-sm-12 col-md-12">
+                                                        @foreach (var item in Model)
+                                                        {
+                                                        <div class="product-layout product-list">
+                                                            <div class="product-thumb">
+                                                                <div class="product-inner media align-items-center">
+                                                                    <div class="product-image mb-4 mb-md-0 mr-md-4 mr-xl-5">
+                                                                        <a href="@Url.Action("Detail", "Product", new { @id = item.ID})">
+                                                                            @if (!string.IsNullOrEmpty(item.Image))
+                                                                            {
+                                                                                <img src="@Url.Content(item.Image)" alt="productImg" />
+                                                                            }
+                                                                        </a>
+                                                                        <div class="action-links">
+                                                                            <a class="action-btn btn-cart" href="#" title="Giỏ hàng"><i class="pe-7s-cart"></i></a>
+                                                                            <a class="action-btn btn-wishlist" href="#" title="Yêu thích"><i class="pe-7s-like"></i></a>
+                                                                            <a class="action-btn btn-compare" href="#" title="So sánh"><i class="pe-7s-refresh-2"></i></a>
+                                                                            <a class="action-btn btn-quickview" data-toggle="modal" data-target="#product_quick_view" href="#" title="Xem nhanh"><i class="pe-7s-search"></i></a>
+                                                                        </div>
+                                                                    </div> <!-- end of product-image -->
+
+                                                                    <div class="product-caption media-body">
+                                                                        <div class="product-ratings">
+                                                                            <div class="rating-box">
+                                                                                <ul class="rating d-flex justify-content-md-start">
+                                                                                    <li><i class="fa fa-star"></i></li>
+                                                                                    <li><i class="fa fa-star"></i></li>
+                                                                                    <li><i class="fa fa-star"></i></li>
+                                                                                    <li><i class="fa fa-star"></i></li>
+                                                                                    <li><i class="fa fa-star"></i></li>
+                                                                                </ul>
+                                                                            </div>
+                                                                        </div>
+                                                                        <h4 class="product-name"><a href="@Url.Action("Detail", "Product", new { @id = item.ID})">@Html.DisplayFor(modelItem => item.Name)</a></h4>
+                                                                        <p class="product-price">
+                                                                            @{
+                                                                                var UnitCost = String.Format("{0:#,##0₫}", item.UnitCost);
+                                                                            }
+                                                                            <span class="price-old">
+                                                                                @Html.DisplayFor(modelItem => UnitCost)
+                                                                            </span>
+                                                                            <span class="price-new">
+                                                                                @Html.DisplayFor(modelItem => UnitCost)
+                                                                            </span>
+                                                                        </p>
+                                                                        <p class="product-des">@Html.DisplayFor(modelItem => item.Description)</p>
+                                                                    </div><!-- end of product-caption -->
+                                                                </div><!-- end of product-inner -->
+                                                            </div><!-- end of product-thumb -->
+                                                        </div> <!-- end of product-layout -->
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> <!-- end of shop-products-wrapper -->
+
+                                    <div class="pagination-area">
+                                        <div class="row align-items-center">
+                                            <div class="col-lg-6 col-md-6">
+                                                @Html.PagedListPager((IPagedList)Model, page => Url.Action("List", new { page, @CategoryID = @ViewBag.CategoryID })
+                                                , new PagedListRenderOptions()
+                                                {
+                                                    MaximumPageNumbersToDisplay = 3,
+                                                    UlElementClasses = new string[] { "pagination" },
+                                                    LiElementClasses = new string[] { "page-item" }
+                                                })
+                                                <script>
+                                                    document.querySelectorAll('.page-item a').forEach(function (el, i) {
+                                                        el.id = i;
+                                                        el.classList.add('page-link');
+                                                    });
+                                                </script>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6">
+                                                <div class="page-amount d-flex">
+                                                    <p>Showing 10 to 18 of 27 (3 Pages)</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> <!-- end of pagination-area -->
+                                </div>
+                            </div> <!-- end of row -->
+                        </div> <!-- end of shop-wrapper -->
+                    </main> <!-- end of #primary -->
+                </div>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-3 order-2 order-md-2 order-lg-1">
+                    <aside id="secondary" class="widget-area">
+                        <div class="sidebar-widget price-filter-widget">
+                            <h2 class="widgettitle">Giá</h2>
+                            <div class="filter-price-content">
+                                <form action="#" method="post">
+                                    <div id="price_slider" class="price-slider"></div>
+                                    <div class="filter-price-wrapper">
+                                        <div class="filter-content">
+                                            <div class="input-type">
+                                                <input type="text" id="min_price" readonly="" />
+                                            </div>
+                                            <span>—</span>
+                                            <div class="input-type">
+                                                <input type="text" id="max_price" readonly="" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div> <!-- end of sidebar-widget -->
+
+                        <div class="sidebar-widget list-widget">
+                            <h2 class="widgettitle">Loại</h2>
+                            <div class="list-widget-wrapper">
+                                <div class="list-group">
+                                    <a href="#">Laptop (198)</a>
+                                    <a href="#">Mobile (70)</a>
+                                    <a href="#">Accessories (14)</a>
+                                    <a href="#">Dresses (10)</a>
+                                </div>
+                            </div>
+                        </div> <!-- end of sidebar-widget -->
+
+                        <div class="sidebar-widget list-widget">
+                            <h2 class="widgettitle">Màu</h2>
+                            <div class="list-widget-wrapper">
+                                <div class="list-group">
+                                    <a href="#">Đen (18)</a>
+                                    <a href="#">Xanh dương (70)</a>
+                                    <a href="#">Xanh lá (14)</a>
+                                    <a href="#">Trắng (10)</a>
+                                </div>
+                            </div>
+                        </div> <!-- end of sidebar-widget -->
+
+                        <div class="sidebar-widget list-widget">
+                            <h2 class="widgettitle">Nhà sản xuất</h2>
+                            <div class="list-widget-wrapper">
+                                <div class="list-group">
+                                    <a href="#">Dell (14)</a>
+                                    <a href="#">Asus (14)</a>
+                                    <a href="#">MSI (14)</a>
+                                    <a href="#">Gigabyte (14)</a>
+                                </div>
+                            </div>
+                        </div> <!-- end of sidebar-widget -->
+
+                        <div class="sidebar-widget banner">
+                            <div class="promo-banner hover-effect-1 mb0">
+                                <a href="#">
+                                    <img src="~/Assets/website/images/banners/banner-5.jpg" alt="Promo Banner">
+                                </a>
+                            </div>
+                        </div> <!-- end of sidebar-widget -->
+                    </aside> <!-- end of #secondary -->
+                </div>
+            </div> <!-- end of row -->
+        </div> <!-- end of container -->
+    </div>
+    <!-- End of Shop Products Wrapper -->
+</div>
+<!-- End of Main Content Wrapper -->
